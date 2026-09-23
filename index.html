@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aero Tech Global | Visa Operations Portal</title>
+<link rel="icon" href="aero-tech-global-logo.jpeg">
+<style>
+:root{
+  --navy:#0b2342; --navy-2:#12385f; --gold:#c9a44d; --gold-soft:#ead8a5;
+  --blue:#1d5f93; --sky:#eef4f8; --bg:#f4f6f8; --text:#142235; --muted:#687587;
+  --border:#dfe5eb; --white:#fff; --green:#187354; --yellow:#a87816; --red:#b83d3d;
+  --shadow:0 14px 36px rgba(11,35,66,.08);
+}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}.hidden{display:none!important}
+.login{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:#fff}
+.login-left{background:linear-gradient(145deg,#081c35 0%,#0b2a4c 58%,#123d63 100%);color:#fff;padding:8vh 8vw;display:flex;flex-direction:column;justify-content:center}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px;font-size:21px}
+.logo{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:0 5px 16px rgba(0,0,0,.18)}
+.logo img{width:100%;height:100%;object-fit:cover}
+.login-left h1{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:750;font-size:48px;line-height:1.05;margin:45px 0 18px;max-width:650px}
+.login-left p{font-size:18px;line-height:1.7;color:#dce7f0;max-width:620px}
+.features{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.feature{padding:10px 14px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#eaf3ff;background:rgba(255,255,255,.06)}
+.login-right{display:grid;place-items:center;padding:30px}
+.login-card{width:min(440px,100%);padding:40px;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);background:#fff}
+.login-card h2{margin:0 0 8px;font-size:30px}.login-card .sub{color:var(--muted);margin:0 0 28px}
+label{display:block;font-size:13px;font-weight:700;margin:17px 0 8px}
+input,select,textarea{width:100%;border:1px solid #d9e0ea;border-radius:10px;padding:12px 13px;outline:none;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(23,105,224,.1)}
+.primary{border:0;background:linear-gradient(135deg,#c9a44d,#d7ba68);color:#10243b;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+.primary:hover{filter:brightness(.96);box-shadow:0 8px 18px rgba(201,164,77,.24)} .login-note{font-size:12px;color:var(--muted);margin-top:18px;text-align:center}
+.app{min-height:100vh;display:grid;grid-template-columns:264px 1fr}
+.sidebar{background:linear-gradient(180deg,#0a2341 0%,#0b2b4d 100%);color:#d9e8ff;padding:22px 16px;position:sticky;top:0;height:100vh}
+.sidebar .brand{color:#fff;padding:8px 10px 28px;border-bottom:1px solid rgba(201,164,77,.28);margin-bottom:18px}.sidebar .logo{background:#fff}
+.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#b8c8df;text-align:left;padding:12px 14px;border-radius:9px;cursor:pointer}
+.nav button.active,.nav button:hover{background:rgba(201,164,77,.14);color:#fff;box-shadow:inset 3px 0 0 var(--gold)}
+.sidebar-footer{position:absolute;bottom:20px;left:16px;right:16px;font-size:12px;color:#8fa5bc;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+.main{min-width:0;background:#f4f6f8}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}
+.user{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:50%;background:#f1e6c8;color:#7c6020;display:grid;place-items:center;font-weight:800}
+.content{padding:28px;max-width:1500px;margin:auto}.page-head{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:24px}
+.page-head h1{margin:0;font-size:28px}.page-head p{margin:6px 0 0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 4px 16px rgba(15,32,58,.04)}
+.metric{display:flex;justify-content:space-between;align-items:start}.metric .label{color:var(--muted);font-size:13px;font-weight:600}.metric .value{font-size:30px;font-weight:800;margin-top:8px}.metric .icon{width:42px;height:42px;border-radius:10px;background:#f5ecd5;color:#876b27;display:grid;place-items:center}
+.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
+.section-title{font-size:16px;font-weight:800;margin-bottom:16px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:14px 10px;border-bottom:1px solid var(--border);white-space:nowrap}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.badge{display:inline-flex;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.15px}.pending{background:#fff5d8;color:#946200}.approved{background:#e3f7ed;color:#116b4a}.process{background:#e7eff5;color:#1d5f93}.rejected{background:#fde8e8;color:#a62e2e}.submitted{background:#f0eadb;color:#80672a}
+.activity{display:grid;gap:15px}.activity-item{border-left:3px solid #dbe8fb;padding-left:13px}.activity-item strong{font-size:13px}.activity-item p{margin:4px 0;color:var(--muted);font-size:12px}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 5px 20px rgba(11,35,66,.035)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.toolbar input{max-width:300px}.toolbar select{max-width:190px}
+.modal{position:fixed;inset:0;background:rgba(8,22,42,.55);display:grid;place-items:center;padding:20px;z-index:20}.modal-box{background:#fff;border-radius:16px;width:min(720px,100%);max-height:90vh;overflow:auto;padding:26px}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f3f0e8;color:#5d4b24;border-radius:8px;padding:7px 10px;cursor:pointer}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.empty{padding:40px;text-align:center;color:var(--muted)}
+.actions{display:flex;gap:7px;align-items:center}.btn-small{border:1px solid var(--border);background:#fff;color:var(--navy);padding:7px 10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer}.btn-small:hover{background:#f5f8fb;border-color:#cbd6e2}.btn-danger{color:#a62e2e;border-color:#f0caca}.btn-danger:hover{background:#fff3f3}.error{display:none;background:#fff0f0;border:1px solid #f3c5c5;color:#a62e2e;border-radius:9px;padding:10px 12px;font-size:13px;margin-top:14px}.login-demo{font-size:11px;color:#7a8696;margin-top:12px;text-align:center}
+@media(max-width:950px){.login{grid-template-columns:1fr}.login-left{display:none}.app{grid-template-columns:72px 1fr}.sidebar .brand span,.nav button span,.sidebar-footer{display:none}.sidebar .brand{justify-content:center}.nav button{text-align:center}.cards{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+@media(max-width:600px){.topbar{padding:0 16px}.content{padding:18px}.cards{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}}
+.activity-meta{font-size:11px;color:#8a96a6;margin-top:4px}.link-box{display:flex;gap:8px;align-items:center}.link-box input{flex:1}.download-link{display:inline-flex;align-items:center;gap:6px;color:#1d5f93;font-weight:700;text-decoration:none}.download-link:hover{text-decoration:underline}.drive-note{background:#f7f9fb;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--muted);margin-top:10px}.success{display:none;background:#edf9f3;border:1px solid #bfe5d1;color:#176b4d;border-radius:9px;padding:10px 12px;font-size:13px;margin-top:12px}.danger-note{font-size:11px;color:#a62e2e;margin-top:8px}</style>
+</head>
+<body>
+<div id="loginView" class="login">
+  <section class="login-left">
+    <div class="brand"><div class="logo"><img src="aero-tech-global-logo.jpeg" alt="Aero Tech Global logo"></div><span>AERO TECH GLOBAL</span></div>
+    <h1>Visa Operations, organized in one secure portal.</h1>
+    <p>Track applications, manage documents, monitor visa status and give authorized travel partners real-time visibility without endless emails and calls.</p>
+    <div class="features"><div class="feature">Case Tracking</div><div class="feature">Partner Portal</div><div class="feature">Document Management</div><div class="feature">Audit History</div></div>
+  </section>
+  <section class="login-right">
+    <div class="login-card">
+      <h2>Welcome back</h2><p class="sub">Sign in to Aero Tech Global Visa Portal</p>
+      <label>Email</label><input id="email" type="email" placeholder="admin@aerotechglobal.com">
+      <label>Password</label><input id="password" type="password" placeholder="••••••••">
+      <div id="loginError" class="error" role="alert">Invalid email or password. Please check your credentials.</div>
+      <button class="primary" style="width:100%;margin-top:22px" onclick="login()">Sign In</button>
+      <p class="login-note">Authorized access only • Owner controls are restricted</p>
+      <p class="login-demo">Authorized users only • Owner and 10 assigned user accounts</p>
+    </div>
+  </section>
+</div>
+
+<div id="appView" class="app hidden" style="border-top:3px solid var(--gold);">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo"><img src="aero-tech-global-logo.jpeg" alt="Aero Tech Global logo"></div><span>AERO TECH GLOBAL</span></div>
+    <nav class="nav">
+      <button class="active" onclick="showPage('dashboard',this)">▦ <span>Dashboard</span></button>
+      <button onclick="showPage('applications',this)">▤ <span>Visa Applications</span></button>
+      <button onclick="showPage('partners',this)">♙ <span>Partners</span></button>
+      <button onclick="showPage('documents',this)">▧ <span>Documents</span></button>
+      <button onclick="showPage('reports',this)">◫ <span>Reports</span></button>
+      <button onclick="showPage('settings',this)">⚙ <span>Settings</span></button>
+    </nav>
+    <div class="sidebar-footer">Aero Tech Global<br>Visa Operations Portal v1.0</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><strong id="pageTitle">Dashboard</strong></div><div class="user"><div><strong id="currentUserName">Administrator</strong><div id="currentUserRole" style="font-size:12px;color:#7c8796">Authorized User</div></div><div class="avatar">AT</div><button class="btn-small" onclick="logout()">Sign Out</button></div></header>
+    <div id="pageContent" class="content"></div>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden">
+ <div class="modal-box">
+  <div class="modal-head"><h2 id="modalTitle" style="margin:0">Create Visa Application</h2><button class="close" onclick="closeModal()">✕</button></div>
+  <div class="form-grid">
+   <div><label>Applicant Name</label><input id="fName" placeholder="Full name"></div>
+   <div><label>Passport Number</label><input id="fPassport" placeholder="Passport number"></div>
+   <div><label>Destination Country</label><select id="fCountry"><option>United Kingdom</option><option>Turkey</option><option>United States</option><option>UAE</option><option>Saudi Arabia</option><option>Schengen</option><option>Malaysia</option></select></div>
+   <div><label>Visa Type</label><select id="fType"><option>Business</option><option>Visit</option><option>Tourist</option><option>Conference</option><option>Work</option></select></div>
+   <div><label>Partner</label><input id="fPartner" placeholder="Partner / travel desk"></div>
+   <div><label>Status</label><select id="fStatus"><option>Documents Received</option><option>Submitted</option><option>Under Process</option><option>Appointment Pending</option></select></div>
+   <div class="full"><label>Notes</label><textarea id="fNotes" rows="3" placeholder="Internal case notes"></textarea></div>
+   <div class="full" id="approvedVisaSection"><label>Approved Visa</label><div class="link-box"><input id="fVisaUrl" type="url" placeholder="Google Drive link (auto-filled after upload)"><input id="fVisaFile" type="file" accept="application/pdf,image/*" style="max-width:260px" onchange="uploadApprovedVisa(this)"><button type="button" class="btn-small" onclick="openDriveFolder()">Open Drive</button></div><div class="drive-note">Choose the approved visa PDF to upload directly to the configured Google Drive folder. The client can download it from the case record.</div><div id="visaCurrent"></div></div>
+  </div>
+  <div id="caseSaveMessage" class="success"></div>
+  <button id="saveCaseBtn" class="primary" style="margin-top:20px" onclick="saveCase()">Create Case</button>
+ </div>
+</div>
+
+<script>
+const DRIVE_FOLDER_URL='https://drive.google.com/drive/folders/148au5Px4-Ut5mVJv_VTdIXvkoBz4YNhq?usp=drive_link';
+const SHEET_URL='https://docs.google.com/spreadsheets/d/1hRSxTIP0pZUA4UXEKwsl9u3Jw-RwxMn4dGndNj97mUc/edit?usp=sharing';
+const APPS_SCRIPT_URL=localStorage.getItem('aeroTechAppsScriptUrl')||'';
+const OWNER_EMAIL='Owner@gmail.com';
+const OWNER_PASSWORD='Mark2477@#';
+const USERS=[
+ {email:'user01@aerotechglobal.com',password:'AeroUser#01',name:'Ali Raza'},
+ {email:'user02@aerotechglobal.com',password:'AeroUser#02',name:'Sara Ahmed'},
+ {email:'user03@aerotechglobal.com',password:'AeroUser#03',name:'Hamza Khan'},
+ {email:'user04@aerotechglobal.com',password:'AeroUser#04',name:'Ayesha Malik'},
+ {email:'user05@aerotechglobal.com',password:'AeroUser#05',name:'Usman Ali'},
+ {email:'user06@aerotechglobal.com',password:'AeroUser#06',name:'Hina Shah'},
+ {email:'user07@aerotechglobal.com',password:'AeroUser#07',name:'Bilal Ahmed'},
+ {email:'user08@aerotechglobal.com',password:'AeroUser#08',name:'Mariam Noor'},
+ {email:'user09@aerotechglobal.com',password:'AeroUser#09',name:'Danish Iqbal'},
+ {email:'user10@aerotechglobal.com',password:'AeroUser#10',name:'Fatima Zahra'}
+];
+let currentUser=null;
+const isOwner=()=>currentUser?.role==='owner';
+let cases = JSON.parse(localStorage.getItem('aeroTechCases') || 'null') || [
+ {id:'VISA-2026-00125',name:'Ahmed Khan',passport:'AB1234567',country:'United Kingdom',type:'Business',partner:'Global Travel Desk',status:'Under Process',date:'18 Sep 2026',createdAt:'2026-09-18T10:20:00',approvedVisaUrl:''},
+ {id:'VISA-2026-00126',name:'Sara Ali',passport:'PK7654321',country:'Turkey',type:'Visit',partner:'ABC Travels',status:'Approved',date:'19 Sep 2026',createdAt:'2026-09-19T09:15:00',approvedVisaUrl:''},
+ {id:'VISA-2026-00127',name:'Bilal Ahmed',passport:'BC4567890',country:'United States',type:'B1/B2',partner:'Corporate Travel',status:'Submitted',date:'20 Sep 2026',createdAt:'2026-09-20T13:40:00',approvedVisaUrl:''},
+ {id:'VISA-2026-00128',name:'Hina Malik',passport:'CD2345678',country:'Schengen',type:'Business',partner:'Global Travel Desk',status:'Appointment Pending',date:'21 Sep 2026',createdAt:'2026-09-21T11:15:00',approvedVisaUrl:''}
+];
+let activityLog = JSON.parse(localStorage.getItem('aeroTechActivity') || 'null') || [
+ {time:'2026-09-23T10:20:00',text:'VISA-2026-00126 approved'},
+ {time:'2026-09-22T15:40:00',text:'Passport document uploaded for VISA-2026-00125'},
+ {time:'2026-09-22T11:15:00',text:'Appointment pending for VISA-2026-00128'},
+ {time:'2026-09-20T13:40:00',text:'VISA-2026-00127 created'}
+];
+const statusClass=s=>s.includes('Approved')?'approved':s.includes('Rejected')?'rejected':s.includes('Process')?'process':s.includes('Submitted')?'submitted':'pending';
+const DEMO_EMAIL='admin@aerotechglobal.com';
+const DEMO_PASSWORD='AeroTech@2026';
+let editingId=null;
+function saveState(){localStorage.setItem('aeroTechCases',JSON.stringify(cases));localStorage.setItem('aeroTechActivity',JSON.stringify(activityLog));}
+function addActivity(text){activityLog.unshift({time:new Date().toISOString(),text});activityLog=activityLog.slice(0,50);saveState();}
+function fmtDate(v){if(!v)return '—';return new Date(v).toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}
+function openDriveFolder(){window.open(DRIVE_FOLDER_URL,'_blank','noopener');}
+function openSheet(){window.open(SHEET_URL,'_blank','noopener');}
+function csvEscape(v){return '"'+String(v??'').replace(/"/g,'""')+'"';}
+function exportCsv(){
+ const headers=['Case ID','Applicant','Passport','Destination','Visa Type','Partner','Status','Application Created','Approved Visa Link'];
+ const rows=cases.map(x=>[x.id,x.name,x.passport,x.country,x.type,x.partner,x.status,fmtDate(x.createdAt),x.approvedVisaUrl||'']);
+ const csv=[headers,...rows].map(r=>r.map(csvEscape).join(',')).join('\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='aero-tech-visa-report-'+new Date().toISOString().slice(0,10)+'.csv'; a.click(); URL.revokeObjectURL(a.href);
+ addActivity('Visa report exported as CSV');
+ if(APPS_SCRIPT_URL){
+   fetch(APPS_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'exportReport',rows:[headers,...rows]})}).then(()=>alert('Report exported to the connected Google Sheet and downloaded as CSV.')).catch(()=>alert('CSV downloaded. Google Sheet sync could not be reached; check your Apps Script URL.'));
+ } else alert('CSV downloaded. To also write into Google Sheets, set your deployed Apps Script Web App URL in Settings.');
+}
+function uploadApprovedVisa(input){
+ if(!isOwner()){alert('Only the Owner account can upload approved visas.');return;}
+ const file=input.files?.[0]; if(!file) return;
+ if(!editingId){alert('Save the application first, then upload the approved visa.'); input.value=''; return;}
+ if(!APPS_SCRIPT_URL){alert('Google Drive upload is not connected yet. Deploy google-apps-script.gs and add its Web App URL in Settings.'); input.value=''; return;}
+ const reader=new FileReader(); reader.onload=()=>{
+   const base64=String(reader.result).split(',')[1];
+   fetch(APPS_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'uploadVisa',fileName:file.name,mimeType:file.type||'application/pdf',base64,caseId:editingId})})
+   .then(r=>r.json()).then(data=>{ if(!data.url) throw new Error(data.error||'Upload failed'); document.getElementById('fVisaUrl').value=data.url; document.getElementById('visaCurrent').innerHTML=`<div style="margin-top:8px"><a class="download-link" href="${data.url}" target="_blank" rel="noopener">↓ Current approved visa</a></div>`; alert('Approved visa uploaded to Google Drive.'); })
+   .catch(e=>alert('Upload failed: '+e.message));
+ }; reader.readAsDataURL(file);
+}
+
+
+function login(){
+ const email=document.getElementById('email').value.trim().toLowerCase();
+ const password=document.getElementById('password').value;
+ const err=document.getElementById('loginError');
+ let user=null;
+ if(email===OWNER_EMAIL.toLowerCase() && password===OWNER_PASSWORD) user={email:OWNER_EMAIL,name:'Portal Owner',role:'owner'};
+ else { const found=USERS.find(u=>u.email.toLowerCase()===email && u.password===password); if(found) user={...found,role:'user'}; }
+ if(!user){ err.style.display='block'; return; }
+ currentUser=user; err.style.display='none';
+ document.getElementById('loginView').classList.add('hidden');
+ document.getElementById('appView').classList.remove('hidden');
+ document.getElementById('currentUserName').textContent=user.name;
+ document.getElementById('currentUserRole').textContent=user.role==='owner'?'Owner / Administrator':'Authorized User';
+ renderDashboard();
+}
+
+function logout(){
+ document.getElementById('appView').classList.add('hidden');
+ document.getElementById('loginView').classList.remove('hidden');
+ document.getElementById('password').value='';
+ document.getElementById('loginError').style.display='none';
+}
+function showPage(page,btn){document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.getElementById('pageTitle').textContent=page[0].toUpperCase()+page.slice(1);({dashboard:renderDashboard,applications:renderApplications,partners:renderPartners,documents:renderDocuments,reports:renderReports,settings:renderSettings}[page])();}
+function renderDashboard(){
+ document.getElementById('pageContent').innerHTML=`
+ <div class="page-head"><div><h1 style="color:#0b2342">Visa Operations Dashboard</h1><p>Real-time overview of your visa cases and partner activity.</p><div style="width:54px;height:3px;background:var(--gold);margin-top:11px;border-radius:3px"></div></div>${isOwner()?'<button class="primary" onclick="openModal()">+ New Application</button>':''}</div>
+ <div class="cards">
+ ${metric('Total Applications',cases.length,'▤')}${metric('Under Process',cases.filter(x=>x.status==='Under Process').length,'◷')}${metric('Approved',cases.filter(x=>x.status==='Approved').length,'✓')}${metric('Action Required',cases.filter(x=>x.status==='Appointment Pending').length,'!')}
+ </div>
+ <div class="grid2"><div class="panel"><div class="section-title">Recent Visa Applications</div>${table(cases.slice(0,5))}</div>
+ <div class="panel"><div class="section-title">Recent Activity</div><div class="activity">${activityLog.slice(0,8).map(a=>`<div class="activity-item"><strong>${a.text}</strong><p class="activity-meta">${fmtDate(a.time)}</p></div>`).join('')||'<div class="empty">No activity yet.</div>'}</div></div></div>`;
+}
+function metric(label,value,icon){return `<div class="card metric"><div><div class="label">${label}</div><div class="value">${value}</div></div><div class="icon">${icon}</div></div>`}
+function table(rows){
+ if(!rows.length)return '<div class="empty">No applications found.</div>';
+ return `<div class="table-wrap"><table><thead><tr><th>Case ID</th><th>Applicant</th><th>Country</th><th>Visa</th><th>Status</th><th>Created</th><th>Approved Visa</th><th>Actions</th></tr></thead><tbody>${rows.map(x=>`<tr>
+ <td><strong>${x.id}</strong></td><td>${x.name}</td><td>${x.country}</td><td>${x.type}</td>
+ <td><span class="badge ${statusClass(x.status)}">${x.status}</span></td><td>${fmtDate(x.createdAt)}</td>
+ <td>${x.approvedVisaUrl?`<a class="download-link" href="${x.approvedVisaUrl}" target="_blank" rel="noopener">↓ Download</a>`:'<span style="color:#8a96a6">Not uploaded</span>'}</td>
+ <td><div class="actions">${isOwner()?`<button class="btn-small" onclick="editCase('${x.id}')">Edit</button><button class="btn-small btn-danger" onclick="deleteCase('${x.id}')">Delete</button>`:'<span style="color:#8a96a6;font-size:11px">View only</span>'}</div></td>
+ </tr>`).join('')}</tbody></table></div>`
+}
+function renderApplications(){
+ document.getElementById('pageContent').innerHTML=`<div class="page-head"><div><h1>Visa Applications</h1><p>Search and manage every visa case.</p></div>${isOwner()?'<button class="primary" onclick="openModal()">+ New Application</button>':''}</div>
+ <div class="panel"><div class="toolbar"><input id="search" placeholder="Search applicant, case ID, passport..." oninput="filterCases()"><select id="filter" onchange="filterCases()"><option>All Statuses</option><option>Under Process</option><option>Approved</option><option>Submitted</option><option>Appointment Pending</option></select></div><div id="caseTable">${table(cases)}</div></div>`;
+}
+function filterCases(){let q=document.getElementById('search').value.toLowerCase(),f=document.getElementById('filter').value;let r=cases.filter(x=>(!q||Object.values(x).join(' ').toLowerCase().includes(q))&&(f==='All Statuses'||x.status===f));document.getElementById('caseTable').innerHTML=table(r)}
+function renderPartners(){document.getElementById('pageContent').innerHTML=`<div class="page-head"><div><h1>Partners</h1><p>Authorized travel desks and corporate partners.</p></div><button class="primary">+ Add Partner</button></div><div class="panel">${table([{id:'PARTNER-001',name:'Global Travel Desk',passport:'12 Users',country:'Pakistan',type:'Corporate',partner:'Active',status:'Approved',date:''},{id:'PARTNER-002',name:'ABC Travels',passport:'7 Users',country:'Pakistan',type:'Travel Agency',partner:'Active',status:'Approved',date:''}].map(x=>({...x,id:x.id})))}</div>`}
+function renderDocuments(){document.getElementById('pageContent').innerHTML=`<div class="page-head"><div><h1>Document Management</h1><p>Centralized visa case documents and evidence.</p></div></div><div class="cards">${metric('Passport Documents','24','▧')}${metric('Application Forms','18','▤')}${metric('Visa Grants','7','✓')}${metric('Pending Uploads','3','!')}</div><div class="panel" style="margin-top:18px"><div class="section-title">Document categories</div><div class="empty">Document upload and secure preview will be connected to cloud storage in the production version.</div></div>`}
+function renderReports(){document.getElementById('pageContent').innerHTML=`<div class="page-head"><div><h1>Reports & Analytics</h1><p>Export the current visa register and open the connected Google Sheet.</p></div><div class="actions"><button class="btn-small" onclick="openSheet()">Open Google Sheet</button><button class="primary" onclick="exportCsv()">Export Report</button></div></div><div class="cards">${metric('Total Applications',cases.length,'▤')}${metric('Approved',cases.filter(x=>x.status==='Approved').length,'✓')}${metric('Pending',cases.filter(x=>x.status!=='Approved').length,'◷')}${metric('Deleted Activity',activityLog.filter(x=>x.text.includes('deleted')).length,'×')}</div><div class="panel" style="margin-top:18px"><div class="section-title">Current report</div>${table(cases)}</div>`}
+function renderSettings(){
+ if(!isOwner()){document.getElementById('pageContent').innerHTML=`<div class="page-head"><div><h1>Account Settings</h1><p>Your account has view/download access only.</p></div></div><div class="panel"><div class="section-title">Access level</div><p>Authorized User — application creation, editing, deletion and system configuration are restricted to the Owner account.</p></div>`;return;}
+ document.getElementById('pageContent').innerHTML=`<div class="page-head"><div><h1>System Settings</h1><p>Configure portal access, Google integration and workflow preferences.</p></div></div><div class="grid2"><div class="panel"><div class="section-title">Google integration</div><label>Apps Script Web App URL</label><input id="appsScriptUrl" value="${APPS_SCRIPT_URL}" placeholder="https://script.google.com/macros/s/.../exec"><button class="primary" style="margin-top:12px" onclick="saveAppsScriptUrl()">Save Integration</button><div class="drive-note">Drive folder and Sheet are preconfigured. The Web App URL is required for direct upload and Sheet export.</div></div><div class="panel"><div class="section-title">Owner-only controls</div><p>Edit, delete, create, approved-visa upload, and system settings are available only to the Owner account.</p><div class="danger-note">Do not share the Owner credentials with regular users.</div></div></div><div class="panel" style="margin-top:18px"><div class="section-title">Authorized users</div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Password</th><th>Access</th></tr></thead><tbody>${USERS.map(u=>`<tr><td>${u.name}</td><td>${u.email}</td><td>${u.password}</td><td>View / Download</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function saveAppsScriptUrl(){const v=document.getElementById('appsScriptUrl').value.trim(); localStorage.setItem('aeroTechAppsScriptUrl',v); location.reload();}
+
+function openModal(caseData=null){
+ if(!isOwner()){alert('Only the Owner account can create or edit applications.');return;}
+ editingId=caseData?caseData.id:null;
+ document.getElementById('modalTitle').textContent=caseData?'Edit Visa Application':'Create Visa Application';
+ document.getElementById('saveCaseBtn').textContent=caseData?'Save Changes':'Create Case';
+ document.getElementById('fName').value=caseData?.name||'';
+ document.getElementById('fPassport').value=caseData?.passport||'';
+ document.getElementById('fCountry').value=caseData?.country||'United Kingdom';
+ document.getElementById('fType').value=caseData?.type||'Business';
+ document.getElementById('fPartner').value=caseData?.partner||'';
+ document.getElementById('fStatus').value=caseData?.status||'Documents Received';
+ document.getElementById('fNotes').value=caseData?.notes||'';
+ document.getElementById('fVisaUrl').value=caseData?.approvedVisaUrl||'';
+ document.getElementById('visaCurrent').innerHTML=caseData?.approvedVisaUrl?`<div style="margin-top:8px"><a class="download-link" href="${caseData.approvedVisaUrl}" target="_blank" rel="noopener">↓ Current approved visa</a></div>`:'';
+ document.getElementById('caseSaveMessage').style.display='none';
+ document.getElementById('modal').classList.remove('hidden');
+}
+function closeModal(){document.getElementById('modal').classList.add('hidden');editingId=null}
+function saveCase(){
+ if(!isOwner()){alert('Only the Owner account can create or edit applications.');return;}
+ let n=document.getElementById('fName').value.trim();
+ if(!n){alert('Please enter applicant name.');return}
+ const data={name:n,passport:document.getElementById('fPassport').value.trim()||'Not entered',country:document.getElementById('fCountry').value,type:document.getElementById('fType').value,partner:document.getElementById('fPartner').value.trim()||'Internal',status:document.getElementById('fStatus').value,notes:document.getElementById('fNotes').value.trim(),approvedVisaUrl:document.getElementById('fVisaUrl').value.trim()};
+ if(editingId){
+   const i=cases.findIndex(x=>x.id===editingId);
+   if(i!==-1){cases[i]={...cases[i],...data};addActivity(`${cases[i].id} updated by ${currentUser.name}`);}
+ } else {
+   const next=129+cases.length;
+   const createdAt=new Date().toISOString();const newCase={id:'VISA-2026-'+String(next).padStart(5,'0'),...data,date:new Date(createdAt).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}),createdAt};cases.unshift(newCase);addActivity(`${newCase.id} created by ${currentUser.name}`);
+ }
+ saveState();
+ closeModal();
+ renderApplications();
+ document.getElementById('pageTitle').textContent='Applications';
+ document.querySelectorAll('.nav button').forEach((x,i)=>x.classList.toggle('active',i===1));
+}
+function editCase(id){
+ if(!isOwner()){alert('Only the Owner account can edit applications.');return;}
+ const item=cases.find(x=>x.id===id);
+ if(item) openModal(item);
+}
+function deleteCase(id){
+ if(!isOwner()){alert('Only the Owner account can delete applications.');return;}
+ const item=cases.find(x=>x.id===id);
+ if(!item)return;
+ if(!confirm(`Delete ${item.id} for ${item.name}? This action cannot be undone.`))return;
+ cases=cases.filter(x=>x.id!==id);
+ addActivity(`${item.id} deleted for ${item.name} by ${currentUser.name}`);
+ saveState();
+ renderApplications();
+}
+</script>
+</body>
+</html>
